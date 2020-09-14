@@ -1,4 +1,3 @@
-import 'package:ecommerce/constants.dart';
 import 'package:ecommerce/screens/homepage.dart';
 import 'package:ecommerce/screens/loginpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,32 +22,34 @@ class LandingPage extends StatelessWidget {
           //checks login state
           return StreamBuilder(
             stream: FirebaseAuth.instance.authStateChanges(),
-            builder: (context, s) {
-              if (s.hasError) {
+            builder: (context, streamSnapshot) {
+              if (streamSnapshot.hasError) {
                 return Scaffold(
                   body: Center(
-                    child: Text('error ${s.error}'),
+                    child: Text('error ${streamSnapshot.error}'),
                   ),
                 );
               }
 
               //checking if user is already logged in
-              if (s.connectionState == ConnectionState.active) {
-                User _user = s.data;
+              if (streamSnapshot.connectionState == ConnectionState.active) {
+                User _user = streamSnapshot.data;
                 if (_user == null) {
                   //user not logged in
                   return LoginPage();
                 } else {
                   //user already logged in
-                  HomePage();
+                  return HomePage();
                 }
-              } //connection loading screen
+              } 
+              //connection loading screen
+               return Scaffold(body: Center(child: Text("Checking Authentication")));
             },
           );
         }
 
         //connection loading screen
-        return Scaffold(body: Center(child: Text("Initializing App")));
+        return Scaffold(body: Center(child: Text("Initializing ")));
       },
     );
   }
