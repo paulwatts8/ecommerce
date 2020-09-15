@@ -14,7 +14,8 @@ class MyApp extends StatelessWidget {
       home: LandingPage(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)),
+          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
+          accentColor: Color(0xFFFF1E00)),
     );
   }
 }
