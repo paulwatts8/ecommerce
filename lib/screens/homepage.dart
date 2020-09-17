@@ -1,3 +1,6 @@
+import 'package:ecommerce/tabs/home_tab.dart';
+import 'package:ecommerce/tabs/saved_tab.dart';
+import 'package:ecommerce/tabs/search_tab.dart';
 import 'package:ecommerce/widgets/bottomtabs.dart';
 import 'package:flutter/material.dart';
 
@@ -39,11 +42,7 @@ class _HomePageState extends State<HomePage> {
                     _selectedTab = num;
                   });
                 },
-                children: [
-                  Container(child: Center(child: Text('Homepage'))),
-                  Container(child: Center(child: Text('search'))),
-                  Container(child: Center(child: Text('saved'))),
-                ],
+                children: [HomeTab(), SearchTab(), SavedTab()],
               ),
             ),
           ),
